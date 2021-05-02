@@ -82,11 +82,11 @@ class DahuaVTOClient(asyncio.Protocol):
         self.keep_alive_interval = 0
         self.transport = None
 
-        self.mqtt_client = mqtt.Client()
+        self.mqtt_client = mqtt.Client(transport="websockets")
         self._loop = asyncio.get_event_loop()
 
     def initialize_mqtt_client(self):
-        _LOGGER.info("Connecting MQTT Broker")
+        _LOGGER.info("Websockets: Connecting MQTT Broker")
 
         self.mqtt_client.user_data_set(self)
 
